@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -13,8 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import ua.edu.lntu.cw_1.ui.theme.IPZ_CW_1Theme
 
 class MainActivity : ComponentActivity() {
@@ -47,13 +51,19 @@ fun MyInfo() {
         )
 
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Моя інформація")
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Ім'я: Чоботар Юлія")
+        Text(
+            text = "Чоботар Юлія",
+            style = LargeBold
+        )
+
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = "Посада: Студент")
+        Text(text = "Студент")
         Spacer(modifier = Modifier.height(8.dp))
         ContactInfo(icon = Icons.Filled.Phone, text = "+380 333 333 333")
+        Spacer(modifier = Modifier.height(8.dp))
+        ContactInfo(icon = Icons.Filled.Email, text = "example@example.com")
+        Spacer(modifier = Modifier.height(8.dp))
+        ContactInfo(icon = Icons.Filled.Email, text = "email@email.com")
     }
 }
 
@@ -67,6 +77,11 @@ fun ContactInfo(icon: ImageVector, text: String) {
         Text(text = text)
     }
 }
+
+val LargeBold = TextStyle(
+    fontWeight = FontWeight.Bold,
+    fontSize = 35.sp
+)
 
 @Preview(showBackground = true)
 @Composable
