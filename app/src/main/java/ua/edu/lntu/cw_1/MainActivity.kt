@@ -30,7 +30,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MyInfo()
+                    CenteredBlock {
+                        MyInfo()
+                    }
                 }
             }
         }
@@ -38,11 +40,21 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+fun CenteredBlock(content: @Composable () -> Unit) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        content()
+    }
+}
+
+@Composable
 fun MyInfo() {
     Column(
-        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(horizontal = 16.dp)
     ) {
         Image(
             painter = painterResource(id = android.R.drawable.ic_menu_gallery),
@@ -57,23 +69,34 @@ fun MyInfo() {
         )
 
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = "Студент")
-        Spacer(modifier = Modifier.height(8.dp))
-        ContactInfo(icon = Icons.Filled.Phone, text = "+380 333 333 333")
-        Spacer(modifier = Modifier.height(8.dp))
-        ContactInfo(icon = Icons.Filled.Email, text = "example@example.com")
-        Spacer(modifier = Modifier.height(8.dp))
-        ContactInfo(icon = Icons.Filled.Email, text = "email@email.com")
+        Text(
+            text = "Студент",
+            style = LargeBold_2
+        )
+        Spacer(modifier = Modifier.height(90.dp))
+
+        // Контактна інформація
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.Start
+        ) {
+            ContactInfo(icon = Icons.Filled.Phone, text = "+380 333 333 333")
+            Spacer(modifier = Modifier.height(8.dp))
+            ContactInfo(icon = Icons.Filled.Email, text = "example@example.com")
+            Spacer(modifier = Modifier.height(8.dp))
+            ContactInfo(icon = Icons.Filled.Email, text = "email@email.com")
+        }
     }
 }
 
 @Composable
 fun ContactInfo(icon: ImageVector, text: String) {
     Row(
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(start = 90.dp)
     ) {
         Icon(imageVector = icon, contentDescription = null)
-        Spacer(modifier = Modifier.width(4.dp))
+        Spacer(modifier = Modifier.width(5.dp))
         Text(text = text)
     }
 }
@@ -81,6 +104,11 @@ fun ContactInfo(icon: ImageVector, text: String) {
 val LargeBold = TextStyle(
     fontWeight = FontWeight.Bold,
     fontSize = 35.sp
+)
+
+val LargeBold_2 = TextStyle(
+    fontWeight = FontWeight.Bold,
+    fontSize = 18.sp
 )
 
 @Preview(showBackground = true)
