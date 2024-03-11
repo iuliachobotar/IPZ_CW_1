@@ -57,7 +57,7 @@ fun MyInfo() {
         modifier = Modifier.padding(horizontal = 16.dp)
     ) {
         Image(
-            painter = painterResource(id = android.R.drawable.ic_menu_gallery),
+            painter = painterResource(id = R.drawable.android_logo),
             contentDescription = "Android Logo",
             modifier = Modifier.size(128.dp)
         )
@@ -75,7 +75,6 @@ fun MyInfo() {
         )
         Spacer(modifier = Modifier.height(90.dp))
 
-        // Контактна інформація
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.Start
